@@ -153,15 +153,15 @@ def preprocess_function(examples):
 
 
 # 加载数据集
-dataset = load_dataset("json", data_files={"train": "/home/zhengjiaying/project/RAG-test/qrecc/qrecc_train.jsonl",
-                                                 "validation": "/home/zhengjiaying/project/RAG-test/qrecc/qrecc_val.jsonl"},
+dataset = load_dataset("json", data_files={"train": "./project/RAG-test/qrecc/qrecc_train.jsonl",
+                                                 "validation": "./project/RAG-test/qrecc/qrecc_val.jsonl"},
                        cache_dir="./cache",  # 缓存数据集，避免重复解析JSON
                        num_proc=8)
 
 
 # 初始化tokenizer（flan-t5-base）
 # 加载 FLAN-T5 模型和 Tokenizer
-model_name = "/home/zhengjiaying/project/RAG-test/Flan-T5-large"
+model_name = "./project/RAG-test/Flan-T5-large"
 
 # model = T5RewardModel(model_name)
 model =  AutoModelForSeq2SeqLM.from_pretrained(model_name)
@@ -295,7 +295,7 @@ model.config.pad_token_id = tokenizer.pad_token_id
 
 # 训练参数（原生Trainer风格，支持save_strategy="best"）
 training_args = Seq2SeqTrainingArguments(
-    output_dir="/home/zhengjiaying/project/RAG-test/t5-checkpoint/sft_flant5_large_redata_qrecc_0421_2",
+    output_dir="./project/RAG-test/t5-checkpoint/sft_flant5_large_redata_qrecc_0421_2",
     do_train = True,
     do_eval = False,
     eval_strategy='no',
