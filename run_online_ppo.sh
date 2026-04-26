@@ -1,5 +1,5 @@
 #!/bin/bash
-# cd /home/zhengjiaying/project/RAG-test/RL/PPO
+# cd ./project/RAG-test/RL/PPO
 # nohup bash run_online_ppo.sh
 export CUDA_VISIBLE_DEVICES=0,1
 export WANDB_MODE=offline
@@ -7,17 +7,17 @@ export TOKENIZERS_PARALLELISM=false
 
 python online_ppo.py \
   --seed 42 \
-  --train_file /home/zhengjiaying/project/RAG-test/qrecc/qrecc_train.jsonl \
-  --val_file /home/zhengjiaying/project/RAG-test/qrecc/qrecc_val.jsonl \
-  --cache_dir /home/zhengjiaying/project/RAG-test/RL/PPO/cache \
-  --base_model_name /home/zhengjiaying/project/RAG-test/Flan-T5-large \
-  --policy_model_name /home/zhengjiaying/project/RAG-test/t5-checkpoint/sft_flant5_large_redata_qrecc_0421_1/checkpoint-13500 \
-  --generator_model_path /home/zhengjiaying/project/RAG-test/Meta-Llama-3-8B-Instruct \
-  --output_dir /home/zhengjiaying/project/RAG-test/RL/PPO/checkpoint/online_ppo_qrecc_m1r0_0422_1 \
-  --logging_dir /home/zhengjiaying/project/RAG-test/RL/PPO/checkpoint/online_ppo_qrecc_m1r0_0422_1/logs \
-  --retriever_collection_tsv /home/zhengjiaying/project/Llama2/datasets/qrecc/selected_train_qrecc_segments.tsv \
-  --retriever_model_path /home/zhengjiaying/project/RAG-test/msmarco-roberta-base-ance-firstp \
-  --retriever_index_path /home/zhengjiaying/project/RAG-test/first_part_test/qrecc_index/select_train_qrecc_faiss_cos.index \
+  --train_file ./project/RAG-test/qrecc/qrecc_train.jsonl \
+  --val_file ./project/RAG-test/qrecc/qrecc_val.jsonl \
+  --cache_dir ./project/RAG-test/RL/PPO/cache \
+  --base_model_name ./project/RAG-test/Flan-T5-large \
+  --policy_model_name ./project/RAG-test/t5-checkpoint/sft_flant5_large_redata_qrecc_0421_1/checkpoint-13500 \
+  --generator_model_path ./project/RAG-test/Meta-Llama-3-8B-Instruct \
+  --output_dir ./project/RAG-test/RL/PPO/checkpoint/online_ppo_qrecc_m1r0_0422_1 \
+  --logging_dir ./project/RAG-test/RL/PPO/checkpoint/online_ppo_qrecc_m1r0_0422_1/logs \
+  --retriever_collection_tsv ./project/Llama2/datasets/qrecc/selected_train_qrecc_segments.tsv \
+  --retriever_model_path ./project/RAG-test/msmarco-roberta-base-ance-firstp \
+  --retriever_index_path ./project/RAG-test/first_part_test/qrecc_index/select_train_qrecc_faiss_cos.index \
   --retriever_topk 5 \
   --generator_max_docs 1 \
   --retriever_embed_batch_size 32 \
