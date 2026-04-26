@@ -894,17 +894,17 @@ def get_online_rewards(
 def get_args():
     parser = argparse.ArgumentParser()
 
-    parser.add_argument("--seed", type=int, default=42) # /home/zhengjiaying/project/RAG-test/RL/PPO/online_ppo.py
+    parser.add_argument("--seed", type=int, default=42) 
 
-    parser.add_argument("--train_file", type=str, default="/home/zhengjiaying/project/RAG-test/qrecc/qrecc_train.jsonl")
-    parser.add_argument("--val_file", type=str, default="/home/zhengjiaying/project/RAG-test/qrecc/qrecc_val.jsonl")
-    parser.add_argument("--cache_dir", type=str, default="/home/zhengjiaying/project/RAG-test/RL/PPO/cache")
+    parser.add_argument("--train_file", type=str, default="./project/RAG-test/qrecc/qrecc_train.jsonl")
+    parser.add_argument("--val_file", type=str, default="./project/RAG-test/qrecc/qrecc_val.jsonl")
+    parser.add_argument("--cache_dir", type=str, default="./project/RAG-test/RL/PPO/cache")
 
-    parser.add_argument("--base_model_name", type=str, default="/home/zhengjiaying/project/RAG-test/Flan-T5-large")
-    parser.add_argument("--policy_model_name", type=str, default="/home/zhengjiaying/project/RAG-test/t5-checkpoint/t5-b1g2-qrecc-1024-256-5e-4-e5-full-inst-0110/checkpoint-70700")
+    parser.add_argument("--base_model_name", type=str, default="./project/RAG-test/Flan-T5-large")
+    parser.add_argument("--policy_model_name", type=str, default="./project/RAG-test/t5-checkpoint/t5-b1g2-qrecc-1024-256-5e-4-e5-full-inst-0110/checkpoint-70700")
 
-    parser.add_argument("--output_dir", type=str, default="/home/zhengjiaying/project/RAG-test/RL/PPO/checkpoint/online_ppo_qrecc")
-    parser.add_argument("--logging_dir", type=str, default="/home/zhengjiaying/project/RAG-test/RL/PPO/checkpoint/online_ppo_qrecc/logs")
+    parser.add_argument("--output_dir", type=str, default="./project/RAG-test/RL/PPO/checkpoint/online_ppo_qrecc")
+    parser.add_argument("--logging_dir", type=str, default="./project/RAG-test/RL/PPO/checkpoint/online_ppo_qrecc/logs")
 
     parser.add_argument("--max_ctx_length", type=int, default=512)
     parser.add_argument("--max_suffix_length", type=int, default=64)
@@ -935,17 +935,17 @@ def get_args():
     parser.add_argument(
     "--retriever_collection_tsv",
     type=str,
-    default="/home/zhengjiaying/project/Llama2/datasets/qrecc/selected_val_qrecc_segments.tsv",
+    default="./project/Llama2/datasets/qrecc/selected_val_qrecc_segments.tsv",
     )
     parser.add_argument(
     "--retriever_model_path",
     type=str,
-    default="/home/zhengjiaying/project/RAG-test/msmarco-roberta-base-ance-firstp",
+    default="./project/RAG-test/msmarco-roberta-base-ance-firstp",
     )
     parser.add_argument(
     "--retriever_index_path",
     type=str,
-    default="/home/zhengjiaying/project/RAG-test/first_part_test/qrecc_index/select_test_qrecc_faiss_cos.index",
+    default="./project/RAG-test/first_part_test/qrecc_index/select_test_qrecc_faiss_cos.index",
     )
     parser.add_argument("--retriever_embed_batch_size", type=int, default=32)
     
