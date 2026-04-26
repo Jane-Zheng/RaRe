@@ -221,15 +221,15 @@ def build_input(context, tokenizer, max_concat_length=512, max_query_length=64):
 
 
 # 加载数据集
-dataset = load_dataset("json", data_files={"train": "/home/zhengjiaying/project/RAG-test/topicoqa/papers_full_train_re.jsonl",
-                                                 "validation": "/home/zhengjiaying/project/RAG-test/topicoqa/devdata/select_papers.jsonl"},
+dataset = load_dataset("json", data_files={"train": "./project/RAG-test/topicoqa/papers_full_train_re.jsonl",
+                                                 "validation": "./project/RAG-test/topicoqa/devdata/select_papers.jsonl"},
                        cache_dir="./cache",  # 缓存数据集，避免重复解析JSON
                        num_proc=8)
 
 
 # 初始化tokenizer（flan-t5-base）
 # 加载 FLAN-T5 模型和 Tokenizer
-model_name = "/home/zhengjiaying/project/RAG-test/Flan-T5-large"
+model_name = "./project/RAG-test/Flan-T5-large"
 
 # model = T5RewardModel(model_name)
 model =  AutoModelForSeq2SeqLM.from_pretrained(model_name)
@@ -369,7 +369,7 @@ model.config.pad_token_id = tokenizer.pad_token_id
 
 # 训练参数（原生Trainer风格，支持save_strategy="best"）
 training_args = Seq2SeqTrainingArguments(
-    output_dir="/home/zhengjiaying/project/RAG-test/t5-checkpoint/sft_flant5_large_redata_new_topiocqa_gpt_0408_3",
+    output_dir="./project/RAG-test/t5-checkpoint/sft_flant5_large_redata_new_topiocqa_gpt_0408_3",
     do_train = True,
     do_eval = False,
     eval_strategy='no',
