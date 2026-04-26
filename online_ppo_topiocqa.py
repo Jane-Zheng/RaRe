@@ -957,17 +957,17 @@ def get_online_rewards(
 def get_args():
     parser = argparse.ArgumentParser()
 
-    parser.add_argument("--seed", type=int, default=42) # /home/zhengjiaying/project/RAG-test/RL/PPO/online_ppo.py
+    parser.add_argument("--seed", type=int, default=42) #./project/RAG-test/RL/PPO/online_ppo.py
 
-    parser.add_argument("--train_file", type=str, default="/home/zhengjiaying/project/RAG-test/topicoqa/papers_full_train_re.jsonl")
-    parser.add_argument("--val_file", type=str, default="/home/zhengjiaying/project/RAG-test/topicoqa/devdata/select_papers.jsonl")
-    parser.add_argument("--cache_dir", type=str, default="/home/zhengjiaying/project/RAG-test/RL/PPO/cache")
+    parser.add_argument("--train_file", type=str, default="./project/RAG-test/topicoqa/papers_full_train_re.jsonl")
+    parser.add_argument("--val_file", type=str, default="./project/RAG-test/topicoqa/devdata/select_papers.jsonl")
+    parser.add_argument("--cache_dir", type=str, default="./project/RAG-test/RL/PPO/cache")
 
-    parser.add_argument("--base_model_name", type=str, default="/home/zhengjiaying/project/RAG-test/Flan-T5-large")
-    parser.add_argument("--policy_model_name", type=str, default="/home/zhengjiaying/project/RAG-test/t5-checkpoint/sft_flant5_large_redata_topiocqa_gpt_0329_1/checkpoint-22500")
+    parser.add_argument("--base_model_name", type=str, default="./project/RAG-test/Flan-T5-large")
+    parser.add_argument("--policy_model_name", type=str, default="./project/RAG-test/t5-checkpoint/sft_flant5_large_redata_topiocqa_gpt_0329_1/checkpoint-22500")
 
-    parser.add_argument("--output_dir", type=str, default="/home/zhengjiaying/project/RAG-test/RL/PPO/checkpoint/online_ppo_topiocqa")
-    parser.add_argument("--logging_dir", type=str, default="/home/zhengjiaying/project/RAG-test/RL/PPO/checkpoint/online_ppo_topiocqa/logs")
+    parser.add_argument("--output_dir", type=str, default="./project/RAG-test/RL/PPO/checkpoint/online_ppo_topiocqa")
+    parser.add_argument("--logging_dir", type=str, default="./project/RAG-test/RL/PPO/checkpoint/online_ppo_topiocqa/logs")
 
     parser.add_argument("--max_ctx_length", type=int, default=512)
     parser.add_argument("--max_suffix_length", type=int, default=64)
@@ -998,17 +998,17 @@ def get_args():
     parser.add_argument(
     "--retriever_collection_tsv",
     type=str,
-    default="/home/zhengjiaying/project/Llama2/datasets/qrecc/selected_val_qrecc_segments.tsv",
+    default="./project/Llama2/datasets/qrecc/selected_val_qrecc_segments.tsv",
     )
     parser.add_argument(
     "--retriever_model_path",
     type=str,
-    default="/home/zhengjiaying/project/RAG-test/msmarco-roberta-base-ance-firstp",
+    default="./project/RAG-test/msmarco-roberta-base-ance-firstp",
     )
     parser.add_argument(
     "--retriever_index_path",
     type=str,
-    default="/home/zhengjiaying/project/RAG-test/first_part_test/qrecc_index/select_test_qrecc_faiss_cos.index",
+    default="./project/RAG-test/first_part_test/qrecc_index/select_test_qrecc_faiss_cos.index",
     )
     parser.add_argument("--retriever_embed_batch_size", type=int, default=32)
     
@@ -1573,7 +1573,7 @@ def main():
             # kl = compute_kl_penalty(old_seq_logprobs, ref_seq_logprobs) # 0327_2 # 0410_5 被迫试试。。。
             kl = compute_ref_penalty(old_token_logprobs, ref_token_logprobs,mask) # 0328_1
             # kl_penalty = torch.clamp(kl, min=0.0)
-            # kl_penalty = kl  # 我突然觉得还是应该ABS。。。
+            # kl_penalty = kl  
             kl_penalty = torch.abs(kl)
             total_rewards = reward_tensor - args.kl_coef * kl_penalty
             # token_rewards = build_token_level_rewards(
@@ -1584,13 +1584,13 @@ def main():
             #     )
 
             # ===== advantage / return =====
-            advantages = total_rewards - old_seq_values # 0411:测一下改回来的？？？
+            advantages = total_rewards - old_seq_values 
             
             # advantages = compute_grpo_advantages(
             #     total_rewards,
             #     group_size=args.num_samples_per_query,
-            # ) # 0329_2 # 0410_5 topiocqa 迫使我改回来了。。。。
-            # advantages = whiten(advantages) # ?0330 说是要注释掉？？grpo的测试耗时太可怕了。。。要不还是改回0328_1的设置？
+            # ) 
+            # advantages = whiten(advantages) 
             # returns = advantages + old_seq_values
             returns = total_rewards # 0328_1
             
@@ -1598,7 +1598,7 @@ def main():
             #         token_rewards=token_rewards,
             #         values=old_values,
             #         mask=mask,
-            #         whiten_advantages=True,   # 你这个场景建议先开
+            #         whiten_advantages=True,   
             #     )
 
             # ===== PPO update =====
